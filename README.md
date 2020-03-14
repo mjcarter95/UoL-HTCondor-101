@@ -12,10 +12,10 @@ The structure of each directory is as follows
 
 ```
 .
-- Implementation of Monte Carlo estimation in the respective language
-- Job description
-- Folder (job) which holds outputs from the job (data outputs, log files, etc.)
-- README.md file containing instructions how to execute the application on Condor
+|- Implementation of Monte Carlo estimation in the respective language
+|- Job description
+|- Folder (job) which holds outputs from the job (data outputs, log files, etc.)
+|- README.md file containing instructions how to execute the application on Condor
 ```
 
 ## Condortools
