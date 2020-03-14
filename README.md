@@ -18,9 +18,8 @@ The structure of each directory is as follows
 |- README.md file containing instructions how to execute the application on Condor
 ```
 
-## Condortools
-
-## Repository Structure
+## Condortools
+Condortools is a Python module that allows users to programmatically interact with the University of Liverpool's HTCondor pool.
 
 ## Authors
 * Matthew Carter - [mjcarter.co](http://mjcarter.co/)
