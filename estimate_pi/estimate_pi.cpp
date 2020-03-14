@@ -1,65 +1,48 @@
-/*
- * This code is taken from Geekstogeeks
- * https://www.geeksforgeeks.org/estimating-value-pi-using-monte-carlo/
+/**
+ * Matthew Carter - University of Liverpool
+ * 14 Mar 2020
  */
 
-/* C++ program for estimation of Pi using Monte 
-   Carlo Simulation */
-#include <bits/stdc++.h>
+#include <iostream>
 #include <cstdlib>
+#include <random>
+using namespace std;
 
-// Defines precision for x and y values. More the 
-// interval, more the number of significant digits
-using namespace std; 
-  
-int main(int argc, char *argv[]) 
-{ 
-    int interval, i; 
-    double rand_x, rand_y, origin_dist, pi; 
-    int circle_points = 0, square_points = 0; 
-  
-    if(argc != 2) {
-        cout << "usage: " << argv[0] << " <interval>\n";
+int main(int argc, char *argv[]) {
+
+    if(argc != 3) {
+        std::cerr << "usage: " << argv[0] << " <n_throws> <n_runs>\n";
+        exit(0);
     }
 
-    int INTERVAL = atoi(argv[1]);
+    int n_throws = atoi(argv[1]);
+    int n_runs = atoi(argv[2]);
+    int in_circle = 0;
+    double x, y, pi_estimate = 0;
 
-    // Initializing rand() 
-    srand(time(NULL)); 
-  
-    // Total Random numbers generated = possible x 
-    // values * possible y values 
-    for (i = 0; i < (INTERVAL * INTERVAL); i++) { 
-  
-        // Randomly generated x and y values 
-        rand_x = double(rand() % (INTERVAL + 1)) / INTERVAL; 
-        rand_y = double(rand() % (INTERVAL + 1)) / INTERVAL; 
-  
-        // Distance between (x, y) from the origin 
-        origin_dist = rand_x * rand_x + rand_y * rand_y; 
-  
-        // Checking if (x, y) lies inside the define 
-        // circle with R=1 
-        if (origin_dist <= 1) 
-            circle_points++; 
-  
-        // Total number of points generated 
-        square_points++; 
-  
-        // estimated pi after this iteration 
-        pi = double(4 * circle_points) / square_points; 
-  
-        // For visual understanding (Optional) 
-        cout << rand_x << " " << rand_y << " " << circle_points 
-             << " " << square_points << " - " << pi << endl << endl; 
-  
-        // Pausing estimation for first 10 values (Optional) 
-        if (i < 20) 
-            getchar(); 
-    } 
-  
-    // Final Estimated Value 
-    cout << "\nFinal Estimation of Pi = " << pi; 
-  
-    return 0; 
-} 
+    // Set up random number generator
+    default_random_engine generator;
+    uniform_real_distribution<double> distribution(0.0, 1.0);
+
+    // Perform Monte Carlo estimate n_runs times
+    for(int i = 0;  i < n_runs; i++) {
+        // Throw the dart n_throws times
+        for(int i = 0; i < n_throws; i++) {
+            x = distribution(generator);
+            y = distribution(generator);
+
+            // Check if the dart hit the board
+            if((x * x) + (y * y) <= 1)
+                in_circle += 1;
+        }
+
+        // Increment estimate of pi
+        pi_estimate += 4 * (double)in_circle / (double)n_throws;
+        in_circle = 0;
+    }
+
+    // Output result
+    cout << "Estimate of pi: " << (pi_estimate / (double)n_runs) << "\n";
+
+    return 0;
+}

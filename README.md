@@ -1,6 +1,6 @@
 # HTCondor 101
 
-An introduction to running applications on the University of Liverpool's [HTCondor pool](http://condor.liv.ac.uk/). As an example problem, we will estimate pi using the Monte Carlo method. The base C++ code can be found at [Geeksforgeeks](https://www.geeksforgeeks.org/estimating-value-pi-using-monte-carlo/).
+An introduction to running applications on the University of Liverpool's [HTCondor pool](http://condor.liv.ac.uk/). As an example problem, we will estimate pi using the Monte Carlo method.
 
 In this repository, we will walk through:
 
@@ -8,7 +8,15 @@ In this repository, we will walk through:
 * Running Python applications
 * Using the Condortools module to programmatically run applications
 
+The structure of each directory is as follows
 
+```
+.
+- Implementation of Monte Carlo estimation in the respective language
+- Job description
+- Folder (job) which holds outputs from the job (data outputs, log files, etc.)
+- README.md file containing instructions how to execute the application on Condor
+```
 
 ## Condortools
 
