@@ -7,3 +7,7 @@ estimate_pi : estimate_pi.cpp
 
 clean:
 	rm -rf estimate_pi
+
+clean-job:
+	rm -rf *.txt
+	rm -rf logs/*.log
